@@ -7,77 +7,129 @@ var cars_sold = 0;
 var amount = 0;
 var brandcost = new Array(72500, 23930, 31260, 43990);
 
-var questions = [
+	var questions = [
 	{
-		"qns":"___ you happy today?",
+		"qns":"Where is the Porsche headquarters located?",
 		"no":"1",
-		"correctAns":"c",
-		"points":"2",
-		"choices" : [{
-						"title":"at",
-						"no":"a"
-				},
-				{
-						"title":"was",
-						"no":"b"
-				},
-				{
-						"title":"are",
-						"no":"c"
-				},
-				{
-						"title":"were",
-						"no":"d"
-				}
-			]
-	},
-	{
-		"qns":"Will you come ___ class today?",
-		"no":"2",
 		"correctAns":"d",
 		"points":"2",
+		"category":"Porsche",
 		"choices" : [{
-						"title":"was",
+						"title":"China",
 						"no":"a"
 				},
 				{
-						"title":"in",
+						"title":"Singapore",
 						"no":"b"
 				},
 				{
-						"title":"at",
+						"title":"America",
 						"no":"c"
 				},
 				{
-						"title":"to",
+						"title":"Germany",
 						"no":"d"
 				}
 			]
-	},
-	{
-		"qns":"Where ___ you from?",
-		"no":"3",
-		"correctAns":"c",
+		},
+		{
+		"qns":"What is the revenue for Porsche in 2020?",
+		"no":"2",
+		"correctAns":"a",
 		"points":"2",
+		"category":"Porsche",
 		"choices" : [{
-						"title":"to",
+						"title":"28 billion",
 						"no":"a"
 				},
 				{
-						"title":"at",
+						"title":"44 billion",
 						"no":"b"
 				},
 				{
-						"title":"are",
+						"title":"10 billion",
 						"no":"c"
 				},
 				{
-						"title":"were",
+						"title":"19 billion",
+						"no":"d"
+				}
+			]
+		},
+		{
+		"qns":"Where is the Volkswagen headquarters located?",
+		"no":"1",
+		"correctAns":"d",
+		"points":"2",
+		"category":"Volkswagen",
+		"choices" : [{
+						"title":"China",
+						"no":"a"
+				},
+				{
+						"title":"Singapore",
+						"no":"b"
+				},
+				{
+						"title":"America",
+						"no":"c"
+				},
+				{
+						"title":"Germany",
+						"no":"d"
+				}
+			]
+		},
+		{
+		"qns":"Where is the Audi headquarters located?",
+		"no":"1",
+		"correctAns":"d",
+		"points":"2",
+		"category":"Audi",
+		"choices" : [{
+						"title":"China",
+						"no":"a"
+				},
+				{
+						"title":"Singapore",
+						"no":"b"
+				},
+				{
+						"title":"America",
+						"no":"c"
+				},
+				{
+						"title":"Germany",
+						"no":"d"
+				}
+			]
+		},
+		{
+		"qns":"Where is the BMW headquarters located?",
+		"no":"1",
+		"correctAns":"d",
+		"points":"2",
+		"category":"BMW",
+		"choices" : [{
+						"title":"China",
+						"no":"a"
+				},
+				{
+						"title":"Singapore",
+						"no":"b"
+				},
+				{
+						"title":"America",
+						"no":"c"
+				},
+				{
+						"title":"Germany",
 						"no":"d"
 				}
 			]
 		}
-];
+	];
+
 
 var qnsIndex = 0;
 var selections =[];
@@ -87,11 +139,13 @@ function newClient(){
 	var preference = Math.floor((Math.random()*4));
 	var time = Math.floor((Math.random()*10000)+1);
 	var client = Math.floor((Math.random()*10)+1);
-	if(count<5) {
+	if(count < 5) {
 		var brandName = brandlist[preference];
 		$("#clients_queue").append('<div class="client client_'+client+ ' choice_' + brandName + '"><span class="preference">Client for '+brandlist[preference]+'</span></div>');
 		count++;
 
+		
+		
 		var $clients = $("#clients_queue .client");
 		var firstClient = $clients[0];
 		var $firstClient = $(firstClient);
@@ -122,22 +176,31 @@ function makeCarBoxesDroppable(brand) {
 						$dropBox.append($dragBox);
 						$dragBox.position({of:$dropBox,my:'left top', at:'left top'});
 						
+						
 						var removeMarginStyle = {
 							"margin-top": '0px',
 							"margin-bottom": '0px',
-							"margin-left": "-3px"	
+							"margin-left": "-3px"
 						};
 						$dragBox.css(removeMarginStyle);
 						count--;
 						$dragBox.addClass('selected');
 						currentClient = $dragBox;
-						next_qns();
+						next_qns(brand);
 						var dialogOption = { scrolling: 'no' };
 						$.fancybox.open('#mcq',dialogOption);
 					}
 				};
 	$carBoxes.droppable(options);
 }
+
+
+
+
+
+
+
+
 function makeExitDroppable() {
 	var $exit = $("#exit");
 	var options = {
@@ -155,13 +218,13 @@ function makeExitDroppable() {
 			};
 			$dragBox.css(alignCenterStyle);
 				if($dragBox.hasClass('selected') == false) {
-					count++;
+					count--;
 					newClient();
 				}
 			setTimeout(function() {
 				removeBox($dragBox,-100);
 				},
-				500	  		  
+				2000	  		  
 			);
 		}
 	};
@@ -169,7 +232,7 @@ function makeExitDroppable() {
 }
 
 function removeBox(element,moveToTop) {
-	element.css('z-index', 300);
+	element.css('z-index', 3000);
 	var option = {top:moveToTop,};
 	element.animate(option)
 		.fadeOut(function() {
@@ -224,6 +287,7 @@ function showCashierDialog(dragClient) {
 	dialog.dialog(option);
 }
 
+
 function calcost(dragClient) {
 	if (dragClient.hasClass('choice_Porsche'))
 		{
@@ -244,9 +308,9 @@ function calcost(dragClient) {
 }
 
 function update() {
-	$('clients_served').text(clients_served + ' clients');
-	$('cars_sold').text(cars_sold + ' cars');
-	$('amount').text('$ ' + amount);
+	$('#clients_served').text(clients_served + ' clients');
+	$('#cars_sold').text(cars_sold + ' cars');
+	$('#amount').text('$ ' + amount);
 }
 $(
 	function() {
@@ -282,9 +346,17 @@ function hideAllPages() {
 	);
 }
 
-function next_qns() {
-	if(qnsIndex < questions.length) {
-		var current = questions[qnsIndex];
+function next_qns(category) {
+	var filteredQns = [];
+	for (var i=0;i<questions.length;i++) {
+		var question = questions[i];
+		if(question.category==category) {
+			filteredQns.push(question);
+		}
+	}
+	
+	if(qnsIndex < filteredQns.length) {
+		var current = filteredQns[qnsIndex];
 		var questionTitle = $("#questionTitle");
 		questionTitle.html((qnsIndex+1) + ". " + current.qns);
 
@@ -426,7 +498,7 @@ function ansBox_click(selectedChoice) {
 	}
 	else if(selectedChoice == "b") {
 		optB_Box.css("background-color","khaki");
-	}
+	}	
 	else if(selectedChoice == "c") {
 		optC_Box.css("background-color","khaki");
 	}
@@ -440,3 +512,4 @@ function ansBox_click(selectedChoice) {
 					};
 	selections.push(selection);
 }
+
