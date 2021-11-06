@@ -9,11 +9,82 @@ var brandcost = new Array(72500, 23930, 31260, 43990);
 
 	var questions = [
 	{
-		"qns":"Where is the Porsche headquarters located?",
+		"qns":"Which car brand isn't being sold here?",
 		"no":"1",
+		"correctAns":"c",
+		"points":"2",
+		"qnHint":"It has 6 letters",
+		"choices" : [{
+						"title":"Audi",
+						"no":"a"
+				},
+				{
+						"title":"BMW",
+						"no":"b"
+				},
+				{
+						"title":"Toyota",
+						"no":"c"
+				},
+				{
+						"title":"Volkswagen",
+						"no":"d"
+				}
+			]
+		},
+		
+		{
+		"qns":"Which country has the most sports car brands?",
+		"no":"2",
+		"correctAns":"b",
+		"points":"2",
+		"qnHint":"The capital city of the country is Berlin",
+		"choices" : [{
+						"title":"America",
+						"no":"a"
+				},
+				{
+						"title":"Germany",
+						"no":"b"
+				},
+				{
+						"title":"Japan",
+						"no":"c"
+				},
+				{
+						"title":"Italy",
+						"no":"d"
+				}
+			]
+		},
+		{
+		"qns":"How many cars are produced a day?",
+		"no":"3",
+		"correctAns":"c",
+		"points":"2",
+		"choices" : [{
+						"title":"73,000",
+						"no":"a"
+				},
+				{
+						"title":"110,000",
+						"no":"b"
+				},
+				{
+						"title":"165,000",
+						"no":"c"
+				},
+				{
+						"title":"228,000",
+						"no":"d"
+				}
+			]
+		},
+		{
+		"qns":"Where is the BMW headquarters located?",
+		"no":"4",
 		"correctAns":"d",
 		"points":"2",
-		"category":"Porsche",
 		"choices" : [{
 						"title":"China",
 						"no":"a"
@@ -34,10 +105,9 @@ var brandcost = new Array(72500, 23930, 31260, 43990);
 		},
 		{
 		"qns":"What is the revenue for Porsche in 2020?",
-		"no":"2",
+		"no":"5",
 		"correctAns":"a",
 		"points":"2",
-		"category":"Porsche",
 		"choices" : [{
 						"title":"28 billion",
 						"no":"a"
@@ -56,78 +126,6 @@ var brandcost = new Array(72500, 23930, 31260, 43990);
 				}
 			]
 		},
-		{
-		"qns":"Where is the Volkswagen headquarters located?",
-		"no":"1",
-		"correctAns":"d",
-		"points":"2",
-		"category":"Volkswagen",
-		"choices" : [{
-						"title":"China",
-						"no":"a"
-				},
-				{
-						"title":"Singapore",
-						"no":"b"
-				},
-				{
-						"title":"America",
-						"no":"c"
-				},
-				{
-						"title":"Germany",
-						"no":"d"
-				}
-			]
-		},
-		{
-		"qns":"Where is the Audi headquarters located?",
-		"no":"1",
-		"correctAns":"d",
-		"points":"2",
-		"category":"Audi",
-		"choices" : [{
-						"title":"China",
-						"no":"a"
-				},
-				{
-						"title":"Singapore",
-						"no":"b"
-				},
-				{
-						"title":"America",
-						"no":"c"
-				},
-				{
-						"title":"Germany",
-						"no":"d"
-				}
-			]
-		},
-		{
-		"qns":"Where is the BMW headquarters located?",
-		"no":"1",
-		"correctAns":"d",
-		"points":"2",
-		"category":"BMW",
-		"choices" : [{
-						"title":"China",
-						"no":"a"
-				},
-				{
-						"title":"Singapore",
-						"no":"b"
-				},
-				{
-						"title":"America",
-						"no":"c"
-				},
-				{
-						"title":"Germany",
-						"no":"d"
-				}
-			]
-		}
 	];
 
 
@@ -137,14 +135,12 @@ var currentClient = null;
 
 function newClient(){
 	var preference = Math.floor((Math.random()*4));
-	var time = Math.floor((Math.random()*10000)+1);
+	var time = Math.floor((Math.random()*15000)+1);
 	var client = Math.floor((Math.random()*10)+1);
 	if(count < 5) {
 		var brandName = brandlist[preference];
-		$("#clients_queue").append('<div class="client client_'+client+ ' choice_' + brandName + '"><span class="preference">Client for '+brandlist[preference]+'</span></div>');
+		$("#clients_queue").append('<div class="client client_'+client+ ' choice_' + brandName + '"><span class="preference" style="font-weight:900;color:gray;">Client for '+brandlist[preference]+'</span></div>');
 		count++;
-
-		
 		
 		var $clients = $("#clients_queue .client");
 		var firstClient = $clients[0];
@@ -186,7 +182,7 @@ function makeCarBoxesDroppable(brand) {
 						count--;
 						$dragBox.addClass('selected');
 						currentClient = $dragBox;
-						next_qns(brand);
+						next_qns();
 						var dialogOption = { scrolling: 'no' };
 						$.fancybox.open('#mcq',dialogOption);
 					}
@@ -346,17 +342,9 @@ function hideAllPages() {
 	);
 }
 
-function next_qns(category) {
-	var filteredQns = [];
-	for (var i=0;i<questions.length;i++) {
-		var question = questions[i];
-		if(question.category==category) {
-			filteredQns.push(question);
-		}
-	}
-	
-	if(qnsIndex < filteredQns.length) {
-		var current = filteredQns[qnsIndex];
+function next_qns() {
+	if(qnsIndex < questions.length) {
+		var current = questions[qnsIndex];
 		var questionTitle = $("#questionTitle");
 		questionTitle.html((qnsIndex+1) + ". " + current.qns);
 
@@ -381,6 +369,7 @@ function next_qns(category) {
 		optC_Box.css("background-color", "darkseagreen");
 		optD_Box.css("background-color", "darkseagreen");
 		qnsIndex++;
+		qnNumber = qnsIndex;
 	}
 	
 	else {
@@ -483,6 +472,14 @@ function next_qns(category) {
 		});
 	}
 }
+
+var qnNumber = 0;
+
+function hint() {
+	var result = questions.filter(({no}) => no == qnNumber).map(({qnHint}) => qnHint)
+	console.log(result);
+	}
+	
 
 function ansBox_click(selectedChoice) {
 	var optA_Box = $("#optionA");

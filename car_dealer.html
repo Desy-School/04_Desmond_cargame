@@ -19,7 +19,7 @@
                                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active"> <a class="nav-link" href="#" onClick="showPage('splash')">Play</a> </li>
+      <li class="nav-item"> <a class="nav-link" href="#" onClick="showPage('splash')">Play</a> </li>
       <li class="nav-item"> <a class="nav-link" href="#" onClick="showPage('about')">About</a> </li>
       <li class="nav-item"> <a class="nav-link" href="#" onClick="showPage('credits')">Credits</a> </li>
       <li class="nav-item"> <a class="nav-link" href="#" onClick="showPage('help')">Help</a> </li>
@@ -33,50 +33,50 @@
   </div>
   <div id="play" class="page-panel">
     <div id="salon">
-      <div id="clients_queue"> clients queue </div>
+      <div id="clients_queue"> <span id="client_title">Clients Queue</span> </div>
       <div id="cars_place">
         <div id="porsche" class="place">
-          <h4>Place for Porsche cars</h4>
-          <div class="car"> <img src="images/Porsche_1.jpg"> </div>
-          <div class="car"> <img src="images/Porsche_1.jpg"> </div>
-          <div class="car"> <img src="images/Porsche_1.jpg"> </div>
-          <div class="car"> <img src="images/Porsche_1.jpg"> </div>
+          <h4>Porsche Display Stand</h4>
+          <div class="car"> <img src="images/porsche-icon-1.jpg"> </div>
+          <div class="car"> <img src="images/porsche-icon-1.jpg"> </div>
+          <div class="car"> <img src="images/porsche-icon-1.jpg"> </div>
+          <div class="car"> <img src="images/porsche-icon-1.jpg"> </div>
         </div>
         <div id="volkswagen" class="place">
-          <h4>Place for Volkswagen cars</h4>
-          <div class="car"> <img src="images/volkswagen_2.png"> </div>
-          <div class="car"> <img src="images/Volkswagen_2.png"> </div>
-          <div class="car"> <img src="images/Volkswagen_2.png"> </div>
-          <div class="car"> <img src="images/Volkswagen_2.png"> </div>
+          <h4>Volkswagen Display Stand</h4>
+          <div class="car"> <img src="images/volkswagen-icon-1.png"> </div>
+          <div class="car"> <img src="images/volkswagen-icon-1.png"> </div>
+          <div class="car"> <img src="images/volkswagen-icon-1.png"> </div>
+          <div class="car"> <img src="images/volkswagen-icon-1.png"> </div>
         </div>
         <div id="audi" class="place">
-          <h4>Place for Audi cars</h4>
-          <div class="car"> <img src="images/Audi_3.jpg"> </div>
-          <div class="car"> <img src="images/Audi_3.jpg"> </div>
-          <div class="car"> <img src="images/Audi_3.jpg"> </div>
-          <div class="car"> <img src="images/Audi_3.jpg"> </div>
+          <h4>Audi Display Stand</h4>
+          <div class="car"> <img src="images/audi-icon-1.jpg"> </div>
+          <div class="car"> <img src="images/audi-icon-1.jpg"> </div>
+          <div class="car"> <img src="images/audi-icon-1.jpg"> </div>
+          <div class="car"> <img src="images/audi-icon-1.jpg"> </div>
         </div>
         <div id="bmw" class="place">
-          <h4>Place for BMW cars</h4>
-          <div class="car"> <img src="images/BMW_1.jpg"> </div>
-          <div class="car"> <img src="images/BMW_1.jpg"> </div>
-          <div class="car"> <img src="images/BMW_1.jpg"> </div>
-          <div class="car"> <img src="images/BMW_1.jpg"> </div>
+          <h4>BMW Display Stand</h4>
+          <div class="car"> <img src="images/bmw-icon-1.jpg"> </div>
+          <div class="car"> <img src="images/bmw-icon-1.jpg"> </div>
+          <div class="car"> <img src="images/bmw-icon-1.jpg"> </div>
+          <div class="car"> <img src="images/bmw-icon-1.jpg"> </div>
         </div>
       </div>
       <div id="cashier">
-        <h4>cashier</h4>
+        <h4>Cashier</h4>
         <div id="cashier_img_holder"><img src="images/cashier.jpg"></div>
       </div>
       <div id="exit">
-        <h4>exit</h4>
-        <div id="exit_img_holder"><img src="images/exit.gif"></div>
+        <h4>Exit</h4>
+        <div id="exit_img_holder"><img src="images/exit.jpg"></div>
       </div>
       <div id="display">
         <ul>
-          <li id="clients_served">10 clients</li>
-          <li id="cars_sold">10 cars</li>
-          <li id="amount">€ 120.000,00</li>
+          <li id="clients_served">0 clients</li>
+          <li id="cars_sold">0 cars</li>
+          <li id="amount">$ 0</li>
         </ul>
       </div>
     </div>
@@ -169,7 +169,10 @@
 		  <div class="row">
 		  	  <div class="col-12">
 			  	  <a onClick="next_qns()">
-				  	<img src="images/next.png" width="100" height="50" alt="next">
+				  	<img src="images/next.png" id="next_button" alt="next">
+				  </a>
+				  <a onClick="hint()">
+				  <img src="images/hint.png" id="hint_button" alt="hint">
 				  </a>
 			  </div>
 		  </div>
