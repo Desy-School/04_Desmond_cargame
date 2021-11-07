@@ -35,6 +35,20 @@
     <div id="salon">
       <div id="clients_queue"> <span id="client_title">Clients Queue</span> </div>
       <div id="cars_place">
+		<div id="audi" class="place">
+          <h4>Audi Display Stand</h4>
+          <div class="car"> <img src="images/audi-icon-1.jpg"> </div>
+          <div class="car"> <img src="images/audi-icon-1.jpg"> </div>
+          <div class="car"> <img src="images/audi-icon-1.jpg"> </div>
+          <div class="car"> <img src="images/audi-icon-1.jpg"> </div>
+        </div>
+        <div id="bmw" class="place">
+          <h4>BMW Display Stand</h4>
+          <div class="car"> <img src="images/bmw-icon-1.jpg"> </div>
+          <div class="car"> <img src="images/bmw-icon-1.jpg"> </div>
+          <div class="car"> <img src="images/bmw-icon-1.jpg"> </div>
+          <div class="car"> <img src="images/bmw-icon-1.jpg"> </div>
+        </div>
         <div id="porsche" class="place">
           <h4>Porsche Display Stand</h4>
           <div class="car"> <img src="images/porsche-icon-1.jpg"> </div>
@@ -48,20 +62,6 @@
           <div class="car"> <img src="images/volkswagen-icon-1.png"> </div>
           <div class="car"> <img src="images/volkswagen-icon-1.png"> </div>
           <div class="car"> <img src="images/volkswagen-icon-1.png"> </div>
-        </div>
-        <div id="audi" class="place">
-          <h4>Audi Display Stand</h4>
-          <div class="car"> <img src="images/audi-icon-1.jpg"> </div>
-          <div class="car"> <img src="images/audi-icon-1.jpg"> </div>
-          <div class="car"> <img src="images/audi-icon-1.jpg"> </div>
-          <div class="car"> <img src="images/audi-icon-1.jpg"> </div>
-        </div>
-        <div id="bmw" class="place">
-          <h4>BMW Display Stand</h4>
-          <div class="car"> <img src="images/bmw-icon-1.jpg"> </div>
-          <div class="car"> <img src="images/bmw-icon-1.jpg"> </div>
-          <div class="car"> <img src="images/bmw-icon-1.jpg"> </div>
-          <div class="car"> <img src="images/bmw-icon-1.jpg"> </div>
         </div>
       </div>
       <div id="cashier">
@@ -86,7 +86,7 @@
   </div>
 	
   <div id="about" class="page-panel">   
-	<div class="container">
+	<div class="container sba">
 		<h1>About Me</h1>
 		<div class="row">
 		<div class="text-left col-md-8 col-xs-8 readableText">Hi, I am Desmond. A second year student in the Web Application course at ITE College West. I love playing video games and reading. I'm proud to say that after 2 years, I understand HTML at a competent level. My goal is to learn other programming languages to help me expand my current skillset.
@@ -98,7 +98,7 @@
 		<hr>
 	</div>
   </div>
-  <div id="credits" class="page-panel"> 
+  <div id="credits" class="page-panel sba"> 
 	<div class="container readableText">
 		<h1>Credits</h1>
 		<div class="pb-2">
@@ -123,9 +123,15 @@
 		<hr>
 	</div>
   </div>
-  <div id="help" class="page-panel">
+  <div id="help" class="page-panel sba">
 	<div class="container">
+		<h1>Info</h1>
+		<hr>
+		<div class="row text-left pb-5 readableText">
+		<p>You are the owner of this Car Dealership and you need to impress the customer with your knowledge by answering their questions correctly. If you get too many wrong answers, the customers will not buy the car and leave</p>
+		</div>
 		<h1>Help</h1>
+		<hr>
 		<div class="row">
 		<div class="text-left col-md-8 col-xs-8 readableText">
 			<h2>How to Play</h2>
@@ -135,7 +141,7 @@
 			
 		</div>
 		<div class="col-md-4 col-xs-4">
-			<img src="images/aboutme.jpg" style="width:100%" alt="myPic">
+			<img src="images/info.png" style="width:100%" alt="infoPic">
 		</div>
 	</div>
 		<hr>
@@ -148,6 +154,9 @@
 		  	  <div class="col-12">
 			  		<span id="questionTitle"></span>
 			  </div>
+		  </div>
+		  <div class="row" id="hintPanel">
+		  	<span>Hint will be here</span>
 		  </div>
 		  <div class="row">
 		  	  <div class="col-6">

@@ -62,6 +62,7 @@ var brandcost = new Array(72500, 23930, 31260, 43990);
 		"no":"3",
 		"correctAns":"c",
 		"points":"2",
+		"qnHint":"30k + 75k + 60k",
 		"choices" : [{
 						"title":"73,000",
 						"no":"a"
@@ -81,47 +82,73 @@ var brandcost = new Array(72500, 23930, 31260, 43990);
 			]
 		},
 		{
-		"qns":"Where is the BMW headquarters located?",
+		"qns":"How many parts does the average car have?",
 		"no":"4",
-		"correctAns":"d",
+		"correctAns":"c",
 		"points":"2",
+		"qnHint":"The answer can be divided by 3",
 		"choices" : [{
-						"title":"China",
+						"title":"10,000",
 						"no":"a"
 				},
 				{
-						"title":"Singapore",
+						"title":"20,000",
 						"no":"b"
 				},
 				{
-						"title":"America",
+						"title":"30,000",
 						"no":"c"
 				},
 				{
-						"title":"Germany",
+						"title":"40,000",
 						"no":"d"
 				}
 			]
 		},
 		{
-		"qns":"What is the revenue for Porsche in 2020?",
+		"qns":"In which American state did the first recorded car accident happen in?",
 		"no":"5",
-		"correctAns":"a",
+		"correctAns":"c",
 		"points":"2",
+		"qnHint":"It is the birhtplace of John Legend, Steve Harvey and 8 US presidents",
 		"choices" : [{
-						"title":"28 billion",
+						"title":"California",
 						"no":"a"
 				},
 				{
-						"title":"44 billion",
+						"title":"Florida",
 						"no":"b"
 				},
 				{
-						"title":"10 billion",
+						"title":"Ohio",
 						"no":"c"
 				},
 				{
-						"title":"19 billion",
+						"title":"Washington",
+						"no":"d"
+				}
+			]
+		},
+		{
+		"qns":"Which is the most popular car brand in Singapore?",
+		"no":"6",
+		"correctAns":"b",
+		"points":"2",
+		"qnHint":"This company also manufacture bikes, lawn equipment, robots, watercrafts and aircrafts",
+		"choices" : [{
+						"title":"BMW ",
+						"no":"a"
+				},
+				{
+						"title":"Honda",
+						"no":"b"
+				},
+				{
+						"title":"Hyundai",
+						"no":"c"
+				},
+				{
+						"title":"Toyota",
 						"no":"d"
 				}
 			]
@@ -343,6 +370,7 @@ function hideAllPages() {
 }
 
 function next_qns() {
+	$("#hintPanel span").hide();
 	if(qnsIndex < questions.length) {
 		var current = questions[qnsIndex];
 		var questionTitle = $("#questionTitle");
@@ -413,10 +441,10 @@ function next_qns() {
 		
 		var result = "";
 		if(failed == true) {
-			result = "<img src='images/tenor.gif' width='250' height='200' alt='failed'/>";
+			result = "<img src='images/youlost.gif' width='250' height='200' alt='failed'/>";
 		}
 		else {
-			result = "<img src='images/excellent.png' width='250' height='200' alt='passed'/>";
+			result = "<img src='images/youwon.gif' width='250' height='200' alt='passed'/>";
 		}
 		var myresult = $("#myresult");
 		myresult.html(result);
@@ -478,6 +506,7 @@ var qnNumber = 0;
 function hint() {
 	var result = questions.filter(({no}) => no == qnNumber).map(({qnHint}) => qnHint)
 	console.log(result);
+	$("#hintPanel span").fadeToggle().html("Hint: " + result);
 	}
 	
 
